@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bubble chart of top 15 ocean plastic polluters. Bubble size = total emissions (kt/yr). Source: Jambeck et al. 2015; Meijer et al. 2021, via Our World in Data.",
+  "width": "container",
+  "height": 240,
+  "data": {
+    "values": [
+      { "country": "Philippines",  "emissions": 356.4, "region": "Southeast Asia" },
+      { "country": "India",        "emissions": 126.5, "region": "South Asia"     },
+      { "country": "Malaysia",     "emissions":  73.9, "region": "Southeast Asia" },
+      { "country": "China",        "emissions":  70.3, "region": "East Asia"      },
+      { "country": "Indonesia",    "emissions":  56.4, "region": "Southeast Asia" },
+      { "country": "Myanmar",      "emissions":  40.0, "region": "Southeast Asia" },
+      { "country": "Vietnam",      "emissions":  28.2, "region": "Southeast Asia" },
+      { "country": "Bangladesh",   "emissions":  24.6, "region": "South Asia"     },
+      { "country": "Thailand",     "emissions":  18.5, "region": "Southeast Asia" },
+      { "country": "Sri Lanka",    "emissions":  14.9, "region": "South Asia"     },
+      { "country": "Nigeria",      "emissions":  12.0, "region": "Africa"         },
+      { "country": "Cambodia",     "emissions":  10.2, "region": "Southeast Asia" },
+      { "country": "Pakistan",     "emissions":   8.7, "region": "South Asia"     },
+      { "country": "Brazil",       "emissions":   8.4, "region": "Americas"       },
+      { "country": "Tanzania",     "emissions":   7.4, "region": "Africa"         }
+    ]
+  },
+  "mark": { "type": "circle", "opacity": 0.85 },
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "nominal",
+      "sort": { "field": "emissions", "order": "descending" },
+      "axis": { "labelAngle": -40, "title": null }
+    },
+    "size": {
+      "field": "emissions",
+      "type": "quantitative",
+      "scale": { "range": [40, 3500] },
+      "legend": { "title": "kt / yr" }
+    },
+    "color": {
+      "condition": {
+        "test": "datum.country === 'Malaysia'",
+        "value": "#ff6b5b"
+      },
+      "field": "region",
+      "type": "nominal",
+      "scale": { "range": ["#00bcd4", "#4caf7d", "#ffb347", "#7c83a3"] }
+    },
+    "tooltip": [
+      { "field": "country",   "title": "Country"             },
+      { "field": "emissions", "title": "Ocean plastic (kt/yr)", "format": ".1f" },
+      { "field": "region",    "title": "Region"              }
+    ]
+  }
+}

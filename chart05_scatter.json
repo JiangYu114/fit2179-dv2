@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Map 2 — Malaysia river pollution hotspots. Point layer over world base map, zoomed to Malaysia. River WQI classifications based on DOE Malaysia Environmental Quality Report. Base map: Natural Earth via Vega Datasets.",
+  "width": "container",
+  "height": 300,
+  "projection": {
+    "type": "mercator",
+    "center": [108.5, 4.0],
+    "scale": { "expr": "600" }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#061f38",
+        "stroke": "#0a3050",
+        "strokeWidth": 0.6
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "name": "Sg. Klang",        "lat": 3.03, "lon": 101.42, "wqi_class": "Polluted",          "state": "Selangor" },
+          { "name": "Sg. Gombak",       "lat": 3.20, "lon": 101.72, "wqi_class": "Slightly Polluted", "state": "Selangor" },
+          { "name": "Sg. Pinang",       "lat": 5.41, "lon": 100.33, "wqi_class": "Polluted",          "state": "Penang"   },
+          { "name": "Sg. Juru",         "lat": 5.34, "lon": 100.47, "wqi_class": "Polluted",          "state": "Penang"   },
+          { "name": "Sg. Penchala",     "lat": 3.17, "lon": 101.65, "wqi_class": "Slightly Polluted", "state": "KL"       },
+          { "name": "Sg. Kerayong",     "lat": 3.11, "lon": 101.68, "wqi_class": "Polluted",          "state": "KL"       },
+          { "name": "Sg. Muar",         "lat": 2.04, "lon": 102.57, "wqi_class": "Slightly Polluted", "state": "Johor"    },
+          { "name": "Sg. Skudai",       "lat": 1.52, "lon": 103.72, "wqi_class": "Slightly Polluted", "state": "Johor"    },
+          { "name": "Sg. Perak",        "lat": 4.07, "lon": 100.95, "wqi_class": "Clean",             "state": "Perak"    },
+          { "name": "Sg. Kinta",        "lat": 4.59, "lon": 101.08, "wqi_class": "Slightly Polluted", "state": "Perak"    },
+          { "name": "Sg. Kelantan",     "lat": 5.33, "lon": 102.22, "wqi_class": "Clean",             "state": "Kelantan" },
+          { "name": "Sg. Terengganu",   "lat": 5.33, "lon": 103.13, "wqi_class": "Clean",             "state": "Terengganu" },
+          { "name": "Sg. Rajang",       "lat": 2.43, "lon": 112.18, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
+          { "name": "Sg. Sarawak",      "lat": 1.55, "lon": 110.35, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
+          { "name": "Sg. Kinabatangan", "lat": 5.42, "lon": 118.08, "wqi_class": "Clean",             "state": "Sabah"    },
+          { "name": "Sg. Kedah",        "lat": 6.12, "lon": 100.37, "wqi_class": "Clean",             "state": "Kedah"    },
+          { "name": "Sg. Pahang",       "lat": 3.55, "lon": 103.39, "wqi_class": "Clean",             "state": "Pahang"   },
+          { "name": "Sg. Langat",       "lat": 2.85, "lon": 101.55, "wqi_class": "Slightly Polluted", "state": "Selangor" }
+        ]
+      },
+      "mark": { "type": "circle", "opacity": 0.85 },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "size":  { "value": 100 },
+        "color": {
+          "field": "wqi_class",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Clean", "Slightly Polluted", "Polluted"],
+            "range":  ["#4caf7d", "#ffb347", "#ff6b5b"]
+          },
+          "legend": { "title": "DOE WQI Class", "orient": "bottom-right" }
+        },
+        "tooltip": [
+          { "field": "name",      "title": "River"     },
+          { "field": "state",     "title": "State"     },
+          { "field": "wqi_class", "title": "WQI Class" }
+        ]
+      }
+    }
+  ]
+}

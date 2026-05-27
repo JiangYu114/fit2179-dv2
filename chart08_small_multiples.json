@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 9 — Slope (connected dot) chart: change in % clean river basins from 2000 to 2021, for all three DOE pollution indicators. Derived data: extracted from OpenDOSM dataset for year endpoints only. Source: DOE Malaysia, via OpenDOSM.",
+  "width": "container",
+  "height": 260,
+  "data": {
+    "values": [
+      { "indicator": "BOD₅",  "year": 2000, "pct_clean": 32.5 },
+      { "indicator": "BOD₅",  "year": 2021, "pct_clean": 74.6 },
+      { "indicator": "NH₃-N", "year": 2000, "pct_clean": 41.7 },
+      { "indicator": "NH₃-N", "year": 2021, "pct_clean": 64.3 },
+      { "indicator": "SS",    "year": 2000, "pct_clean": 35.0 },
+      { "indicator": "SS",    "year": 2021, "pct_clean": 72.8 }
+    ]
+  },
+  "layer": [
+    {
+      "mark": { "type": "line", "strokeWidth": 2, "opacity": 0.8 },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": { "title": null }
+        },
+        "y": {
+          "field": "pct_clean",
+          "type": "quantitative",
+          "axis": { "title": "% of basins classified Clean", "grid": true },
+          "scale": { "domain": [25, 80] }
+        },
+        "color": {
+          "field": "indicator",
+          "type": "nominal",
+          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] },
+          "legend": { "title": "Indicator" }
+        },
+        "detail": { "field": "indicator", "type": "nominal" }
+      }
+    },
+    {
+      "mark": { "type": "circle", "size": 100, "opacity": 1 },
+      "encoding": {
+        "x": { "field": "year",      "type": "ordinal"      },
+        "y": { "field": "pct_clean", "type": "quantitative" },
+        "color": {
+          "field": "indicator",
+          "type": "nominal",
+          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] }
+        },
+        "tooltip": [
+          { "field": "indicator", "title": "Indicator" },
+          { "field": "year",      "title": "Year"      },
+          { "field": "pct_clean", "title": "% Clean",  "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.year === 2021" }],
+      "mark": { "type": "text", "align": "left", "dx": 8, "fontSize": 10, "font": "DM Sans" },
+      "encoding": {
+        "x":    { "field": "year",      "type": "ordinal"      },
+        "y":    { "field": "pct_clean", "type": "quantitative" },
+        "text": { "field": "indicator", "type": "nominal"      },
+        "color": {
+          "field": "indicator",
+          "type": "nominal",
+          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] }
+        }
+      }
+    }
+  ]
+}

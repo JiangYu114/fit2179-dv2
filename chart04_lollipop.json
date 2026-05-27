@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 10 — Heatmap: proportion of river basins classified 'Polluted' by year (x) and pollution indicator (y). Darker = more polluted. Reveals 2010–2013 as worst period. Source: DOE Malaysia, via OpenDOSM (CC BY 4.0).",
+  "width": "container",
+  "height": 140,
+  "data": {
+    "url": "https://storage.data.gov.my/environment/water_pollution_basin.csv"
+  },
+  "transform": [
+    { "filter": "datum.status === 'polluted'" },
+    { "calculate": "year(toDate(datum.date))", "as": "year" },
+    { "filter": "datum.year <= 2021" },
+    {
+      "calculate": "datum.measure === 'bod5' ? 'BOD₅' : datum.measure === 'nh3n' ? 'NH₃-N' : 'SS'",
+      "as": "indicator"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#030d1a",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": { "title": null, "labelAngle": -45, "labelFontSize": 9 }
+    },
+    "y": {
+      "field": "indicator",
+      "type": "nominal",
+      "axis": { "title": null, "labelFontSize": 11 }
+    },
+    "color": {
+      "field": "proportion",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 45],
+        "range":  ["#062040", "#0a3a5c", "#ffb347", "#ff6b5b", "#cc2200"]
+      },
+      "legend": { "title": "% Polluted basins" }
+    },
+    "tooltip": [
+      { "field": "year",       "title": "Year"                             },
+      { "field": "indicator",  "title": "Indicator"                        },
+      { "field": "proportion", "title": "% of basins polluted", "format": ".1f" }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "World choropleth: ocean plastic emissions by country (thousand tonnes/yr). Source: Meijer et al. 2021, via Our World in Data. ISO 3166-1 numeric IDs used for country lookup.",
+  "width": "container",
+  "height": 360,
+  "projection": { "type": "naturalEarth1" },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "values": [
+                { "id": 608, "emissions": 356.4, "country": "Philippines"    },
+                { "id": 356, "emissions": 126.5, "country": "India"          },
+                { "id": 458, "emissions":  73.9, "country": "Malaysia"       },
+                { "id": 156, "emissions":  70.3, "country": "China"          },
+                { "id": 360, "emissions":  56.4, "country": "Indonesia"      },
+                { "id": 104, "emissions":  40.0, "country": "Myanmar"        },
+                { "id": 704, "emissions":  28.2, "country": "Vietnam"        },
+                { "id":  50, "emissions":  24.6, "country": "Bangladesh"     },
+                { "id": 764, "emissions":  18.5, "country": "Thailand"       },
+                { "id": 144, "emissions":  14.9, "country": "Sri Lanka"      },
+                { "id": 566, "emissions":  12.0, "country": "Nigeria"        },
+                { "id": 116, "emissions":  10.2, "country": "Cambodia"       },
+                { "id": 586, "emissions":   8.7, "country": "Pakistan"       },
+                { "id":  76, "emissions":   8.4, "country": "Brazil"         },
+                { "id": 834, "emissions":   7.4, "country": "Tanzania"       },
+                { "id": 508, "emissions":   6.8, "country": "Mozambique"     },
+                { "id": 840, "emissions":   5.7, "country": "United States"  },
+                { "id": 218, "emissions":   5.2, "country": "Ecuador"        },
+                { "id": 418, "emissions":   2.1, "country": "Laos"           },
+                { "id": 702, "emissions":   1.2, "country": "Singapore"      },
+                { "id": 826, "emissions":   0.8, "country": "United Kingdom" },
+                { "id": 410, "emissions":   0.5, "country": "South Korea"    },
+                { "id": 724, "emissions":   0.3, "country": "Spain"          },
+                { "id": 276, "emissions":   0.3, "country": "Germany"        },
+                { "id": 250, "emissions":   0.2, "country": "France"         },
+                { "id": 392, "emissions":   0.2, "country": "Japan"          },
+                { "id":  36, "emissions":   0.2, "country": "Australia"      }
+              ]
+            },
+            "key": "id",
+            "fields": ["emissions", "country"]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#061528",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "isValid(datum.emissions)",
+            "field": "emissions",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0.1, 360],
+              "range": ["#0a3352", "#0077a8", "#00bcd4", "#ffb347", "#ff6b5b"],
+              "type": "log"
+            },
+            "legend": { "title": "kt / year" }
+          },
+          "value": "#0a1e30"
+        },
+        "tooltip": [
+          { "field": "country",   "title": "Country"                      },
+          { "field": "emissions", "title": "Ocean plastic (kt/yr)", "format": ".2f" }
+        ]
+      }
+    }
+  ]
+}

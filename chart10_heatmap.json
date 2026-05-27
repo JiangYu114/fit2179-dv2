@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Scatter plot: GDP per capita (log scale) vs. % of plastic waste mismanaged. Bubble size = ocean emissions. Malaysia highlighted. Source: World Bank (GDP 2019); Our World in Data; Jambeck et al. 2015.",
+  "width": "container",
+  "height": 280,
+  "data": {
+    "values": [
+      { "country": "Philippines",  "gdp":  3600, "mismanaged": 89, "size": 356.4, "highlight": false, "region": "SEA"        },
+      { "country": "India",        "gdp":  2100, "mismanaged": 77, "size": 126.5, "highlight": false, "region": "South Asia" },
+      { "country": "Malaysia",     "gdp": 10850, "mismanaged": 52, "size":  73.9, "highlight": true,  "region": "SEA"        },
+      { "country": "China",        "gdp": 10500, "mismanaged": 22, "size":  70.3, "highlight": false, "region": "East Asia"  },
+      { "country": "Indonesia",    "gdp":  4135, "mismanaged": 84, "size":  56.4, "highlight": false, "region": "SEA"        },
+      { "country": "Myanmar",      "gdp":  1430, "mismanaged": 89, "size":  40.0, "highlight": false, "region": "SEA"        },
+      { "country": "Vietnam",      "gdp":  2780, "mismanaged": 75, "size":  28.2, "highlight": false, "region": "SEA"        },
+      { "country": "Bangladesh",   "gdp":  1970, "mismanaged": 76, "size":  24.6, "highlight": false, "region": "South Asia" },
+      { "country": "Thailand",     "gdp":  7800, "mismanaged": 72, "size":  18.5, "highlight": false, "region": "SEA"        },
+      { "country": "Sri Lanka",    "gdp":  4100, "mismanaged": 87, "size":  14.9, "highlight": false, "region": "South Asia" },
+      { "country": "Nigeria",      "gdp":  2230, "mismanaged": 83, "size":  12.0, "highlight": false, "region": "Africa"     },
+      { "country": "Cambodia",     "gdp":  1640, "mismanaged": 87, "size":  10.2, "highlight": false, "region": "SEA"        },
+      { "country": "Brazil",       "gdp":  9070, "mismanaged": 47, "size":   8.4, "highlight": false, "region": "Americas"   },
+      { "country": "United States","gdp": 63500, "mismanaged":  2, "size":   5.7, "highlight": false, "region": "OECD"       },
+      { "country": "United Kingdom","gdp":41330, "mismanaged":  3, "size":   0.8, "highlight": false, "region": "OECD"       },
+      { "country": "Germany",      "gdp": 46200, "mismanaged":  1, "size":   0.3, "highlight": false, "region": "OECD"       },
+      { "country": "Japan",        "gdp": 40110, "mismanaged":  2, "size":   0.2, "highlight": false, "region": "OECD"       },
+      { "country": "Australia",    "gdp": 53750, "mismanaged":  3, "size":   0.2, "highlight": false, "region": "OECD"       },
+      { "country": "Singapore",    "gdp": 62690, "mismanaged":  2, "size":   1.2, "highlight": false, "region": "SEA"        },
+      { "country": "South Korea",  "gdp": 31430, "mismanaged":  3, "size":   0.5, "highlight": false, "region": "OECD"       }
+    ]
+  },
+  "layer": [
+    {
+      "mark": { "type": "point", "filled": true, "opacity": 0.75, "size": 80 },
+      "encoding": {
+        "x": {
+          "field": "gdp",
+          "type": "quantitative",
+          "scale": { "type": "log" },
+          "axis": { "title": "GDP per capita (USD, log scale)", "format": "$,d" }
+        },
+        "y": {
+          "field": "mismanaged",
+          "type": "quantitative",
+          "axis": { "title": "% plastic waste mismanaged" }
+        },
+        "color": {
+          "condition": { "test": "datum.highlight", "value": "#ff6b5b" },
+          "field": "region",
+          "type": "nominal",
+          "scale": { "range": ["#00bcd4", "#4caf7d", "#ffb347", "#7c83a3", "#9b8de8"] }
+        },
+        "tooltip": [
+          { "field": "country",    "title": "Country"             },
+          { "field": "gdp",        "title": "GDP/capita ($)",     "format": "$,"  },
+          { "field": "mismanaged", "title": "Mismanaged (%)"                      }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.highlight" }],
+      "mark": { "type": "text", "dx": 8, "dy": -8, "fontSize": 10, "fontWeight": 500, "color": "#ff6b5b", "font": "DM Sans" },
+      "encoding": {
+        "x":    { "field": "gdp",        "type": "quantitative", "scale": { "type": "log" } },
+        "y":    { "field": "mismanaged", "type": "quantitative" },
+        "text": { "value": "Malaysia" }
+      }
+    }
+  ]
+}

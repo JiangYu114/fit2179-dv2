@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 8 — Small multiples: % clean river basins by pollution indicator (BOD5, NH3N, SS), 2000–2021. Three facets show each indicator separately. Source: Department of Environment Malaysia, via OpenDOSM (CC BY 4.0).",
+  "width": "container",
+  "height": 180,
+  "data": {
+    "url": "https://storage.data.gov.my/environment/water_pollution_basin.csv"
+  },
+  "transform": [
+    { "filter": "datum.status === 'clean'" },
+    { "calculate": "year(toDate(datum.date))", "as": "year" },
+    { "filter": "datum.year <= 2021" },
+    {
+      "calculate": "datum.measure === 'bod5' ? 'BOD₅ — Organic Waste' : datum.measure === 'nh3n' ? 'NH₃-N — Ammonia' : 'SS — Suspended Solids'",
+      "as": "indicator_label"
+    }
+  ],
+  "facet": {
+    "field": "indicator_label",
+    "type": "nominal",
+    "columns": 3,
+    "header": {
+      "titleFontSize": 0,
+      "labelFontSize": 10,
+      "labelColor": "#7aafc8",
+      "labelFont": "DM Sans"
+    }
+  },
+  "spec": {
+    "width": "container",
+    "height": 180,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "line": { "strokeWidth": 2 },
+          "color": {
+            "expr": "{ gradient: 'linear', x1:0, y1:0, x2:0, y2:1, stops: [{offset:0, color:'rgba(0,188,212,0.3)'},{offset:1,color:'rgba(0,188,212,0.02)'}]}"
+          }
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "ordinal",
+            "axis": { "title": null, "labelFontSize": 8, "values": [2000, 2005, 2010, 2015, 2021] }
+          },
+          "y": {
+            "field": "proportion",
+            "type": "quantitative",
+            "axis": { "title": "% Clean basins", "grid": true },
+            "scale": { "domain": [0, 85] }
+          },
+          "color": { "value": "#00bcd4" }
+        }
+      },
+      {
+        "mark": { "type": "line", "interpolate": "monotone", "strokeWidth": 2, "color": "#00bcd4" },
+        "encoding": {
+          "x": { "field": "year",       "type": "ordinal"      },
+          "y": { "field": "proportion", "type": "quantitative" }
+        }
+      }
+    ],
+    "encoding": {
+      "tooltip": [
+        { "field": "year",           "title": "Year"      },
+        { "field": "indicator_label","title": "Indicator" },
+        { "field": "proportion",     "title": "% Clean", "format": ".1f" }
+      ]
+    }
+  }
+}

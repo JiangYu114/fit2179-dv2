@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 7 — Stacked normalised area chart: river basin water quality (BOD5 indicator) 2000–2021. Source: Department of Environment Malaysia, via OpenDOSM (CC BY 4.0). URL: https://storage.data.gov.my/environment/water_pollution_basin.csv",
+  "width": "container",
+  "height": 260,
+  "data": {
+    "url": "https://storage.data.gov.my/environment/water_pollution_basin.csv"
+  },
+  "transform": [
+    { "filter": "datum.measure === 'bod5'" },
+    {
+      "calculate": "datum.status === 'clean' ? 'Clean' : datum.status === 'slightly__polluted' ? 'Slightly Polluted' : 'Polluted'",
+      "as": "status_label"
+    },
+    { "calculate": "year(toDate(datum.date))", "as": "year" },
+    { "filter": "datum.year <= 2021" }
+  ],
+  "mark": { "type": "area", "interpolate": "monotone" },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": { "title": null, "labelAngle": 0 }
+    },
+    "y": {
+      "field": "proportion",
+      "type": "quantitative",
+      "stack": "normalize",
+      "axis": { "title": "Share of river basins", "format": ".0%" }
+    },
+    "color": {
+      "field": "status_label",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Clean", "Slightly Polluted", "Polluted"],
+        "range":  ["#4caf7d", "#ffb347", "#ff6b5b"]
+      },
+      "legend": { "title": "Basin Status", "orient": "top-left" }
+    },
+    "order": {
+      "field": "status_label",
+      "type": "nominal",
+      "sort": ["Polluted", "Slightly Polluted", "Clean"]
+    },
+    "tooltip": [
+      { "field": "year",         "title": "Year"           },
+      { "field": "status_label", "title": "Status"         },
+      { "field": "proportion",   "title": "% of basins", "format": ".1f" }
+    ]
+  }
+}
