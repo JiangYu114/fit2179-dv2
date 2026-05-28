@@ -1,73 +1,69 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Chart 8 — Small multiples: % clean river basins by pollution indicator (BOD5, NH3N, SS), 2000–2021. Three facets show each indicator separately. Source: Department of Environment Malaysia, via OpenDOSM (CC BY 4.0).",
+  "description": "Map 2 — Malaysia river pollution hotspots. Point layer over world base map, zoomed to Malaysia. River WQI classifications based on DOE Malaysia Environmental Quality Report. Base map: Natural Earth via Vega Datasets.",
   "width": "container",
-  "height": 180,
-  "data": {
-    "url": "https://storage.data.gov.my/environment/water_pollution_basin.csv"
+  "height": 300,
+  "projection": {
+    "type": "mercator",
+    "center": [108.5, 4.0],
+    "scale": { "expr": "600" }
   },
-  "transform": [
-    { "filter": "datum.status === 'clean'" },
-    { "calculate": "year(toDate(datum.date))", "as": "year" },
-    { "filter": "datum.year <= 2021" },
+  "layer": [
     {
-      "calculate": "datum.measure === 'bod5' ? 'BOD₅ — Organic Waste' : datum.measure === 'nh3n' ? 'NH₃-N — Ammonia' : 'SS — Suspended Solids'",
-      "as": "indicator_label"
-    }
-  ],
-  "facet": {
-    "field": "indicator_label",
-    "type": "nominal",
-    "columns": 3,
-    "header": {
-      "titleFontSize": 0,
-      "labelFontSize": 10,
-      "labelColor": "#7aafc8",
-      "labelFont": "DM Sans"
-    }
-  },
-  "spec": {
-    "width": "container",
-    "height": 180,
-    "layer": [
-      {
-        "mark": {
-          "type": "area",
-          "interpolate": "monotone",
-          "line": { "strokeWidth": 2 },
-          "color": {
-            "expr": "{ gradient: 'linear', x1:0, y1:0, x2:0, y2:1, stops: [{offset:0, color:'rgba(0,188,212,0.3)'},{offset:1,color:'rgba(0,188,212,0.02)'}]}"
-          }
-        },
-        "encoding": {
-          "x": {
-            "field": "year",
-            "type": "ordinal",
-            "axis": { "title": null, "labelFontSize": 8, "values": [2000, 2005, 2010, 2015, 2021] }
-          },
-          "y": {
-            "field": "proportion",
-            "type": "quantitative",
-            "axis": { "title": "% Clean basins", "grid": true },
-            "scale": { "domain": [0, 85] }
-          },
-          "color": { "value": "#00bcd4" }
-        }
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
       },
-      {
-        "mark": { "type": "line", "interpolate": "monotone", "strokeWidth": 2, "color": "#00bcd4" },
-        "encoding": {
-          "x": { "field": "year",       "type": "ordinal"      },
-          "y": { "field": "proportion", "type": "quantitative" }
-        }
+      "mark": {
+        "type": "geoshape",
+        "fill": "#061f38",
+        "stroke": "#0a3050",
+        "strokeWidth": 0.6
       }
-    ],
-    "encoding": {
-      "tooltip": [
-        { "field": "year",           "title": "Year"      },
-        { "field": "indicator_label","title": "Indicator" },
-        { "field": "proportion",     "title": "% Clean", "format": ".1f" }
-      ]
+    },
+    {
+      "data": {
+        "values": [
+          { "name": "Sg. Klang",        "lat": 3.03, "lon": 101.42, "wqi_class": "Polluted",          "state": "Selangor" },
+          { "name": "Sg. Gombak",       "lat": 3.20, "lon": 101.72, "wqi_class": "Slightly Polluted", "state": "Selangor" },
+          { "name": "Sg. Pinang",       "lat": 5.41, "lon": 100.33, "wqi_class": "Polluted",          "state": "Penang"   },
+          { "name": "Sg. Juru",         "lat": 5.34, "lon": 100.47, "wqi_class": "Polluted",          "state": "Penang"   },
+          { "name": "Sg. Penchala",     "lat": 3.17, "lon": 101.65, "wqi_class": "Slightly Polluted", "state": "KL"       },
+          { "name": "Sg. Kerayong",     "lat": 3.11, "lon": 101.68, "wqi_class": "Polluted",          "state": "KL"       },
+          { "name": "Sg. Muar",         "lat": 2.04, "lon": 102.57, "wqi_class": "Slightly Polluted", "state": "Johor"    },
+          { "name": "Sg. Skudai",       "lat": 1.52, "lon": 103.72, "wqi_class": "Slightly Polluted", "state": "Johor"    },
+          { "name": "Sg. Perak",        "lat": 4.07, "lon": 100.95, "wqi_class": "Clean",             "state": "Perak"    },
+          { "name": "Sg. Kinta",        "lat": 4.59, "lon": 101.08, "wqi_class": "Slightly Polluted", "state": "Perak"    },
+          { "name": "Sg. Kelantan",     "lat": 5.33, "lon": 102.22, "wqi_class": "Clean",             "state": "Kelantan" },
+          { "name": "Sg. Terengganu",   "lat": 5.33, "lon": 103.13, "wqi_class": "Clean",             "state": "Terengganu" },
+          { "name": "Sg. Rajang",       "lat": 2.43, "lon": 112.18, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
+          { "name": "Sg. Sarawak",      "lat": 1.55, "lon": 110.35, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
+          { "name": "Sg. Kinabatangan", "lat": 5.42, "lon": 118.08, "wqi_class": "Clean",             "state": "Sabah"    },
+          { "name": "Sg. Kedah",        "lat": 6.12, "lon": 100.37, "wqi_class": "Clean",             "state": "Kedah"    },
+          { "name": "Sg. Pahang",       "lat": 3.55, "lon": 103.39, "wqi_class": "Clean",             "state": "Pahang"   },
+          { "name": "Sg. Langat",       "lat": 2.85, "lon": 101.55, "wqi_class": "Slightly Polluted", "state": "Selangor" }
+        ]
+      },
+      "mark": { "type": "circle", "opacity": 0.85 },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "size":  { "value": 100 },
+        "color": {
+          "field": "wqi_class",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Clean", "Slightly Polluted", "Polluted"],
+            "range":  ["#4caf7d", "#ffb347", "#ff6b5b"]
+          },
+          "legend": { "title": "DOE WQI Class", "orient": "bottom-right" }
+        },
+        "tooltip": [
+          { "field": "name",      "title": "River"     },
+          { "field": "state",     "title": "State"     },
+          { "field": "wqi_class", "title": "WQI Class" }
+        ]
+      }
     }
-  }
+  ]
 }
