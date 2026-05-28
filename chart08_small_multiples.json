@@ -1,72 +1,1502 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Chart 9 — Slope (connected dot) chart: change in % clean river basins from 2000 to 2021, for all three DOE pollution indicators. Derived data: extracted from OpenDOSM dataset for year endpoints only. Source: DOE Malaysia, via OpenDOSM.",
+  "description": "Chart 8 — Small multiples: % clean river basins by pollution indicator (BOD5, NH3N, SS), 2000–2021. Three facets show each indicator separately. Source: Department of Environment Malaysia, via OpenDOSM (CC BY 4.0).",
   "width": "container",
-  "height": 260,
   "data": {
     "values": [
-      { "indicator": "BOD₅",  "year": 2000, "pct_clean": 32.5 },
-      { "indicator": "BOD₅",  "year": 2021, "pct_clean": 74.6 },
-      { "indicator": "NH₃-N", "year": 2000, "pct_clean": 41.7 },
-      { "indicator": "NH₃-N", "year": 2021, "pct_clean": 64.3 },
-      { "indicator": "SS",    "year": 2000, "pct_clean": 35.0 },
-      { "indicator": "SS",    "year": 2021, "pct_clean": 72.8 }
+      {
+        "year": 2000,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 32.5
+      },
+      {
+        "year": 2000,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 52.5
+      },
+      {
+        "year": 2000,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 15.0
+      },
+      {
+        "year": 2000,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 41.67
+      },
+      {
+        "year": 2000,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 40.0
+      },
+      {
+        "year": 2000,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 18.33
+      },
+      {
+        "year": 2000,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 35.0
+      },
+      {
+        "year": 2000,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 20.83
+      },
+      {
+        "year": 2000,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 44.17
+      },
+      {
+        "year": 2001,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 48.33
+      },
+      {
+        "year": 2001,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 34.17
+      },
+      {
+        "year": 2001,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 17.5
+      },
+      {
+        "year": 2001,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 44.17
+      },
+      {
+        "year": 2001,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 35.83
+      },
+      {
+        "year": 2001,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 20.0
+      },
+      {
+        "year": 2001,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 47.5
+      },
+      {
+        "year": 2001,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 20.83
+      },
+      {
+        "year": 2001,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 31.67
+      },
+      {
+        "year": 2002,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 57.5
+      },
+      {
+        "year": 2002,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 24.17
+      },
+      {
+        "year": 2002,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 18.33
+      },
+      {
+        "year": 2002,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 42.5
+      },
+      {
+        "year": 2002,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 33.33
+      },
+      {
+        "year": 2002,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 24.17
+      },
+      {
+        "year": 2002,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 65.0
+      },
+      {
+        "year": 2002,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 11.67
+      },
+      {
+        "year": 2002,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 23.33
+      },
+      {
+        "year": 2003,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 63.33
+      },
+      {
+        "year": 2003,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 24.17
+      },
+      {
+        "year": 2003,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 12.5
+      },
+      {
+        "year": 2003,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 45.0
+      },
+      {
+        "year": 2003,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 30.83
+      },
+      {
+        "year": 2003,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 24.17
+      },
+      {
+        "year": 2003,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 62.5
+      },
+      {
+        "year": 2003,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 14.17
+      },
+      {
+        "year": 2003,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 23.33
+      },
+      {
+        "year": 2004,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 54.17
+      },
+      {
+        "year": 2004,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 30.83
+      },
+      {
+        "year": 2004,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 15.0
+      },
+      {
+        "year": 2004,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 35.83
+      },
+      {
+        "year": 2004,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 39.17
+      },
+      {
+        "year": 2004,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 25.0
+      },
+      {
+        "year": 2004,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 65.0
+      },
+      {
+        "year": 2004,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 9.17
+      },
+      {
+        "year": 2004,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 25.83
+      },
+      {
+        "year": 2005,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 52.74
+      },
+      {
+        "year": 2005,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 28.08
+      },
+      {
+        "year": 2005,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 19.18
+      },
+      {
+        "year": 2005,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 33.56
+      },
+      {
+        "year": 2005,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 36.99
+      },
+      {
+        "year": 2005,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 29.45
+      },
+      {
+        "year": 2005,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 61.64
+      },
+      {
+        "year": 2005,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 15.07
+      },
+      {
+        "year": 2005,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 23.29
+      },
+      {
+        "year": 2006,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 65.75
+      },
+      {
+        "year": 2006,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 19.18
+      },
+      {
+        "year": 2006,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 15.07
+      },
+      {
+        "year": 2006,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 33.56
+      },
+      {
+        "year": 2006,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 38.36
+      },
+      {
+        "year": 2006,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 28.08
+      },
+      {
+        "year": 2006,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 57.53
+      },
+      {
+        "year": 2006,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 13.7
+      },
+      {
+        "year": 2006,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 28.77
+      },
+      {
+        "year": 2007,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 65.73
+      },
+      {
+        "year": 2007,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 25.87
+      },
+      {
+        "year": 2007,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 8.39
+      },
+      {
+        "year": 2007,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 33.57
+      },
+      {
+        "year": 2007,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 41.26
+      },
+      {
+        "year": 2007,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 25.17
+      },
+      {
+        "year": 2007,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 43.36
+      },
+      {
+        "year": 2007,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 27.27
+      },
+      {
+        "year": 2007,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 29.37
+      },
+      {
+        "year": 2008,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 55.24
+      },
+      {
+        "year": 2008,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 32.17
+      },
+      {
+        "year": 2008,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 12.59
+      },
+      {
+        "year": 2008,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 50.35
+      },
+      {
+        "year": 2008,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 26.57
+      },
+      {
+        "year": 2008,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 23.08
+      },
+      {
+        "year": 2008,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 39.86
+      },
+      {
+        "year": 2008,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 23.08
+      },
+      {
+        "year": 2008,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 37.06
+      },
+      {
+        "year": 2009,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 19.58
+      },
+      {
+        "year": 2009,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 51.05
+      },
+      {
+        "year": 2009,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 29.37
+      },
+      {
+        "year": 2009,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 39.16
+      },
+      {
+        "year": 2009,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 32.87
+      },
+      {
+        "year": 2009,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 27.97
+      },
+      {
+        "year": 2009,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 37.76
+      },
+      {
+        "year": 2009,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 22.38
+      },
+      {
+        "year": 2009,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 39.86
+      },
+      {
+        "year": 2010,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 8.39
+      },
+      {
+        "year": 2010,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 55.24
+      },
+      {
+        "year": 2010,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 36.36
+      },
+      {
+        "year": 2010,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 24.48
+      },
+      {
+        "year": 2010,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 46.15
+      },
+      {
+        "year": 2010,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 29.37
+      },
+      {
+        "year": 2010,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 47.55
+      },
+      {
+        "year": 2010,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 18.88
+      },
+      {
+        "year": 2010,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 33.57
+      },
+      {
+        "year": 2011,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 2.14
+      },
+      {
+        "year": 2011,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 57.14
+      },
+      {
+        "year": 2011,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 40.71
+      },
+      {
+        "year": 2011,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 29.29
+      },
+      {
+        "year": 2011,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 45.71
+      },
+      {
+        "year": 2011,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 25.0
+      },
+      {
+        "year": 2011,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 56.43
+      },
+      {
+        "year": 2011,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 18.57
+      },
+      {
+        "year": 2011,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 25.0
+      },
+      {
+        "year": 2012,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 8.57
+      },
+      {
+        "year": 2012,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 49.29
+      },
+      {
+        "year": 2012,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 42.14
+      },
+      {
+        "year": 2012,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 25.0
+      },
+      {
+        "year": 2012,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 47.86
+      },
+      {
+        "year": 2012,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 27.14
+      },
+      {
+        "year": 2012,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 68.57
+      },
+      {
+        "year": 2012,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 20.0
+      },
+      {
+        "year": 2012,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 11.43
+      },
+      {
+        "year": 2013,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 0.0
+      },
+      {
+        "year": 2013,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 32.86
+      },
+      {
+        "year": 2013,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 67.14
+      },
+      {
+        "year": 2013,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 29.29
+      },
+      {
+        "year": 2013,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 41.43
+      },
+      {
+        "year": 2013,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 29.29
+      },
+      {
+        "year": 2013,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 75.0
+      },
+      {
+        "year": 2013,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 17.14
+      },
+      {
+        "year": 2013,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 7.86
+      },
+      {
+        "year": 2014,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 0.0
+      },
+      {
+        "year": 2014,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 10.71
+      },
+      {
+        "year": 2014,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 89.29
+      },
+      {
+        "year": 2014,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 29.29
+      },
+      {
+        "year": 2014,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 42.14
+      },
+      {
+        "year": 2014,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 28.57
+      },
+      {
+        "year": 2014,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 70.71
+      },
+      {
+        "year": 2014,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 15.71
+      },
+      {
+        "year": 2014,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 13.57
+      },
+      {
+        "year": 2015,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 0.0
+      },
+      {
+        "year": 2015,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 13.57
+      },
+      {
+        "year": 2015,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 86.43
+      },
+      {
+        "year": 2015,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 22.86
+      },
+      {
+        "year": 2015,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 46.43
+      },
+      {
+        "year": 2015,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 30.71
+      },
+      {
+        "year": 2015,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 76.43
+      },
+      {
+        "year": 2015,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 9.29
+      },
+      {
+        "year": 2015,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 14.29
+      },
+      {
+        "year": 2016,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 0.0
+      },
+      {
+        "year": 2016,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 7.86
+      },
+      {
+        "year": 2016,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 92.14
+      },
+      {
+        "year": 2016,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 13.57
+      },
+      {
+        "year": 2016,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 59.29
+      },
+      {
+        "year": 2016,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 27.14
+      },
+      {
+        "year": 2016,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 62.14
+      },
+      {
+        "year": 2016,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 16.43
+      },
+      {
+        "year": 2016,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 21.43
+      },
+      {
+        "year": 2017,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 0.0
+      },
+      {
+        "year": 2017,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 35.71
+      },
+      {
+        "year": 2017,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 64.29
+      },
+      {
+        "year": 2017,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 7.86
+      },
+      {
+        "year": 2017,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 61.43
+      },
+      {
+        "year": 2017,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 30.71
+      },
+      {
+        "year": 2017,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 46.43
+      },
+      {
+        "year": 2017,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 32.14
+      },
+      {
+        "year": 2017,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 21.43
+      },
+      {
+        "year": 2018,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 37.76
+      },
+      {
+        "year": 2018,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 25.87
+      },
+      {
+        "year": 2018,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 36.36
+      },
+      {
+        "year": 2018,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 3.5
+      },
+      {
+        "year": 2018,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 61.54
+      },
+      {
+        "year": 2018,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 34.97
+      },
+      {
+        "year": 2018,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 49.65
+      },
+      {
+        "year": 2018,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 21.68
+      },
+      {
+        "year": 2018,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 28.67
+      },
+      {
+        "year": 2019,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 36.81
+      },
+      {
+        "year": 2019,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 27.08
+      },
+      {
+        "year": 2019,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 36.11
+      },
+      {
+        "year": 2019,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 8.33
+      },
+      {
+        "year": 2019,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 51.39
+      },
+      {
+        "year": 2019,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 40.28
+      },
+      {
+        "year": 2019,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 54.17
+      },
+      {
+        "year": 2019,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 25.0
+      },
+      {
+        "year": 2019,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 20.83
+      },
+      {
+        "year": 2020,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 57.64
+      },
+      {
+        "year": 2020,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 31.94
+      },
+      {
+        "year": 2020,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 10.42
+      },
+      {
+        "year": 2020,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 19.44
+      },
+      {
+        "year": 2020,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 51.39
+      },
+      {
+        "year": 2020,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 29.17
+      },
+      {
+        "year": 2020,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 76.39
+      },
+      {
+        "year": 2020,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 9.72
+      },
+      {
+        "year": 2020,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 13.89
+      },
+      {
+        "year": 2021,
+        "measure": "bod5",
+        "status": "Clean",
+        "indicator": "BOD₅",
+        "proportion": 86.11
+      },
+      {
+        "year": 2021,
+        "measure": "bod5",
+        "status": "Slightly Polluted",
+        "indicator": "BOD₅",
+        "proportion": 7.64
+      },
+      {
+        "year": 2021,
+        "measure": "bod5",
+        "status": "Polluted",
+        "indicator": "BOD₅",
+        "proportion": 6.25
+      },
+      {
+        "year": 2021,
+        "measure": "nh3n",
+        "status": "Clean",
+        "indicator": "NH₃-N",
+        "proportion": 40.28
+      },
+      {
+        "year": 2021,
+        "measure": "nh3n",
+        "status": "Slightly Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 25.69
+      },
+      {
+        "year": 2021,
+        "measure": "nh3n",
+        "status": "Polluted",
+        "indicator": "NH₃-N",
+        "proportion": 34.03
+      },
+      {
+        "year": 2021,
+        "measure": "ss",
+        "status": "Clean",
+        "indicator": "SS",
+        "proportion": 88.19
+      },
+      {
+        "year": 2021,
+        "measure": "ss",
+        "status": "Slightly Polluted",
+        "indicator": "SS",
+        "proportion": 4.86
+      },
+      {
+        "year": 2021,
+        "measure": "ss",
+        "status": "Polluted",
+        "indicator": "SS",
+        "proportion": 6.94
+      }
     ]
   },
-  "layer": [
+  "transform": [
     {
-      "mark": { "type": "line", "strokeWidth": 2, "opacity": 0.8 },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal",
-          "axis": { "title": null }
-        },
-        "y": {
-          "field": "pct_clean",
-          "type": "quantitative",
-          "axis": { "title": "% of basins classified Clean", "grid": true },
-          "scale": { "domain": [25, 80] }
-        },
-        "color": {
-          "field": "indicator",
-          "type": "nominal",
-          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] },
-          "legend": { "title": "Indicator" }
-        },
-        "detail": { "field": "indicator", "type": "nominal" }
-      }
+      "filter": "datum.status === 'Clean'"
     },
     {
-      "mark": { "type": "circle", "size": 100, "opacity": 1 },
-      "encoding": {
-        "x": { "field": "year",      "type": "ordinal"      },
-        "y": { "field": "pct_clean", "type": "quantitative" },
-        "color": {
-          "field": "indicator",
-          "type": "nominal",
-          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] }
+      "calculate": "datum.indicator === 'BOD₅' ? 'BOD₅ — Organic Waste' : datum.indicator === 'NH₃-N' ? 'NH₃-N — Ammonia' : 'SS — Suspended Solids'",
+      "as": "indicator_label"
+    }
+  ],
+  "facet": {
+    "field": "indicator_label",
+    "type": "nominal",
+    "columns": 3,
+    "header": {
+      "titleFontSize": 0,
+      "labelFontSize": 11,
+      "labelColor": "#7aafc8",
+      "labelFont": "DM Sans"
+    }
+  },
+  "spec": {
+    "width": 280,
+    "height": 180,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "line": {
+            "strokeWidth": 2
+          },
+          "color": {
+            "expr": "{ gradient: 'linear', x1:0, y1:0, x2:0, y2:1, stops: [{offset:0, color:'rgba(0,188,212,0.3)'},{offset:1,color:'rgba(0,188,212,0.02)'}]}"
+          }
         },
-        "tooltip": [
-          { "field": "indicator", "title": "Indicator" },
-          { "field": "year",      "title": "Year"      },
-          { "field": "pct_clean", "title": "% Clean",  "format": ".1f" }
-        ]
-      }
-    },
-    {
-      "transform": [{ "filter": "datum.year === 2021" }],
-      "mark": { "type": "text", "align": "left", "dx": 8, "fontSize": 10, "font": "DM Sans" },
-      "encoding": {
-        "x":    { "field": "year",      "type": "ordinal"      },
-        "y":    { "field": "pct_clean", "type": "quantitative" },
-        "text": { "field": "indicator", "type": "nominal"      },
-        "color": {
-          "field": "indicator",
-          "type": "nominal",
-          "scale": { "range": ["#00bcd4", "#ffb347", "#4caf7d"] }
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "ordinal",
+            "axis": {
+              "title": null,
+              "labelFontSize": 8,
+              "values": [
+                2000,
+                2005,
+                2010,
+                2015,
+                2021
+              ]
+            }
+          },
+          "y": {
+            "field": "proportion",
+            "type": "quantitative",
+            "axis": {
+              "title": "% Clean basins",
+              "grid": true
+            },
+            "scale": {
+              "domain": [
+                0,
+                85
+              ]
+            }
+          },
+          "color": {
+            "value": "#00bcd4"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "interpolate": "monotone",
+          "strokeWidth": 2,
+          "color": "#00bcd4"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "ordinal"
+          },
+          "y": {
+            "field": "proportion",
+            "type": "quantitative"
+          }
         }
       }
+    ],
+    "encoding": {
+      "tooltip": [
+        {
+          "field": "year",
+          "title": "Year"
+        },
+        {
+          "field": "indicator_label",
+          "title": "Indicator"
+        },
+        {
+          "field": "proportion",
+          "title": "% Clean",
+          "format": ".1f"
+        }
+      ]
     }
-  ]
+  }
 }
