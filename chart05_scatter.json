@@ -1,68 +1,67 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Map 2 — Malaysia river pollution hotspots. Point layer over world base map, zoomed to Malaysia. River WQI classifications based on DOE Malaysia Environmental Quality Report. Base map: Natural Earth via Vega Datasets.",
+  "description": "Scatter plot: GDP per capita (log scale) vs. % of plastic waste mismanaged. Bubble size = ocean emissions. Malaysia highlighted. Source: World Bank (GDP 2019); Our World in Data; Jambeck et al. 2015.",
   "width": "container",
-  "height": 300,
-  "projection": {
-    "type": "mercator",
-    "center": [108.5, 4.0],
-    "scale": { "expr": "600" }
+  "height": 280,
+  "data": {
+    "values": [
+      { "country": "Philippines",  "gdp":  3600, "mismanaged": 89, "size": 356.4, "highlight": false, "region": "SEA"        },
+      { "country": "India",        "gdp":  2100, "mismanaged": 77, "size": 126.5, "highlight": false, "region": "South Asia" },
+      { "country": "Malaysia",     "gdp": 10850, "mismanaged": 52, "size":  73.9, "highlight": true,  "region": "SEA"        },
+      { "country": "China",        "gdp": 10500, "mismanaged": 22, "size":  70.3, "highlight": false, "region": "East Asia"  },
+      { "country": "Indonesia",    "gdp":  4135, "mismanaged": 84, "size":  56.4, "highlight": false, "region": "SEA"        },
+      { "country": "Myanmar",      "gdp":  1430, "mismanaged": 89, "size":  40.0, "highlight": false, "region": "SEA"        },
+      { "country": "Vietnam",      "gdp":  2780, "mismanaged": 75, "size":  28.2, "highlight": false, "region": "SEA"        },
+      { "country": "Bangladesh",   "gdp":  1970, "mismanaged": 76, "size":  24.6, "highlight": false, "region": "South Asia" },
+      { "country": "Thailand",     "gdp":  7800, "mismanaged": 72, "size":  18.5, "highlight": false, "region": "SEA"        },
+      { "country": "Sri Lanka",    "gdp":  4100, "mismanaged": 87, "size":  14.9, "highlight": false, "region": "South Asia" },
+      { "country": "Nigeria",      "gdp":  2230, "mismanaged": 83, "size":  12.0, "highlight": false, "region": "Africa"     },
+      { "country": "Cambodia",     "gdp":  1640, "mismanaged": 87, "size":  10.2, "highlight": false, "region": "SEA"        },
+      { "country": "Brazil",       "gdp":  9070, "mismanaged": 47, "size":   8.4, "highlight": false, "region": "Americas"   },
+      { "country": "United States","gdp": 63500, "mismanaged":  2, "size":   5.7, "highlight": false, "region": "OECD"       },
+      { "country": "United Kingdom","gdp":41330, "mismanaged":  3, "size":   0.8, "highlight": false, "region": "OECD"       },
+      { "country": "Germany",      "gdp": 46200, "mismanaged":  1, "size":   0.3, "highlight": false, "region": "OECD"       },
+      { "country": "Japan",        "gdp": 40110, "mismanaged":  2, "size":   0.2, "highlight": false, "region": "OECD"       },
+      { "country": "Australia",    "gdp": 53750, "mismanaged":  3, "size":   0.2, "highlight": false, "region": "OECD"       },
+      { "country": "Singapore",    "gdp": 62690, "mismanaged":  2, "size":   1.2, "highlight": false, "region": "SEA"        },
+      { "country": "South Korea",  "gdp": 31430, "mismanaged":  3, "size":   0.5, "highlight": false, "region": "OECD"       }
+    ]
   },
   "layer": [
     {
-      "data": {
-        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
-        "format": { "type": "topojson", "feature": "countries" }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#061f38",
-        "stroke": "#0a3050",
-        "strokeWidth": 0.6
+      "mark": { "type": "point", "filled": true, "opacity": 0.75, "size": 80 },
+      "encoding": {
+        "x": {
+          "field": "gdp",
+          "type": "quantitative",
+          "scale": { "type": "log" },
+          "axis": { "title": "GDP per capita (USD, log scale)", "format": "$,d" }
+        },
+        "y": {
+          "field": "mismanaged",
+          "type": "quantitative",
+          "axis": { "title": "% plastic waste mismanaged" }
+        },
+        "color": {
+          "condition": { "test": "datum.highlight", "value": "#ff6b5b" },
+          "field": "region",
+          "type": "nominal",
+          "scale": { "range": ["#00bcd4", "#4caf7d", "#ffb347", "#7c83a3", "#9b8de8"] }
+        },
+        "tooltip": [
+          { "field": "country",    "title": "Country"             },
+          { "field": "gdp",        "title": "GDP/capita ($)",     "format": "$,"  },
+          { "field": "mismanaged", "title": "Mismanaged (%)"                      }
+        ]
       }
     },
     {
-      "data": {
-        "values": [
-          { "name": "Sg. Klang",        "lat": 3.03, "lon": 101.42, "wqi_class": "Polluted",          "state": "Selangor" },
-          { "name": "Sg. Gombak",       "lat": 3.20, "lon": 101.72, "wqi_class": "Slightly Polluted", "state": "Selangor" },
-          { "name": "Sg. Pinang",       "lat": 5.41, "lon": 100.33, "wqi_class": "Polluted",          "state": "Penang"   },
-          { "name": "Sg. Juru",         "lat": 5.34, "lon": 100.47, "wqi_class": "Polluted",          "state": "Penang"   },
-          { "name": "Sg. Penchala",     "lat": 3.17, "lon": 101.65, "wqi_class": "Slightly Polluted", "state": "KL"       },
-          { "name": "Sg. Kerayong",     "lat": 3.11, "lon": 101.68, "wqi_class": "Polluted",          "state": "KL"       },
-          { "name": "Sg. Muar",         "lat": 2.04, "lon": 102.57, "wqi_class": "Slightly Polluted", "state": "Johor"    },
-          { "name": "Sg. Skudai",       "lat": 1.52, "lon": 103.72, "wqi_class": "Slightly Polluted", "state": "Johor"    },
-          { "name": "Sg. Perak",        "lat": 4.07, "lon": 100.95, "wqi_class": "Clean",             "state": "Perak"    },
-          { "name": "Sg. Kinta",        "lat": 4.59, "lon": 101.08, "wqi_class": "Slightly Polluted", "state": "Perak"    },
-          { "name": "Sg. Kelantan",     "lat": 5.33, "lon": 102.22, "wqi_class": "Clean",             "state": "Kelantan" },
-          { "name": "Sg. Terengganu",   "lat": 5.33, "lon": 103.13, "wqi_class": "Clean",             "state": "Terengganu" },
-          { "name": "Sg. Rajang",       "lat": 2.43, "lon": 112.18, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
-          { "name": "Sg. Sarawak",      "lat": 1.55, "lon": 110.35, "wqi_class": "Slightly Polluted", "state": "Sarawak"  },
-          { "name": "Sg. Kinabatangan", "lat": 5.42, "lon": 118.08, "wqi_class": "Clean",             "state": "Sabah"    },
-          { "name": "Sg. Kedah",        "lat": 6.12, "lon": 100.37, "wqi_class": "Clean",             "state": "Kedah"    },
-          { "name": "Sg. Pahang",       "lat": 3.55, "lon": 103.39, "wqi_class": "Clean",             "state": "Pahang"   },
-          { "name": "Sg. Langat",       "lat": 2.85, "lon": 101.55, "wqi_class": "Slightly Polluted", "state": "Selangor" }
-        ]
-      },
-      "mark": { "type": "circle", "opacity": 0.85 },
+      "transform": [{ "filter": "datum.highlight" }],
+      "mark": { "type": "text", "dx": 8, "dy": -8, "fontSize": 10, "fontWeight": 500, "color": "#ff6b5b", "font": "DM Sans" },
       "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "size":  { "value": 100 },
-        "color": {
-          "field": "wqi_class",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Clean", "Slightly Polluted", "Polluted"],
-            "range":  ["#4caf7d", "#ffb347", "#ff6b5b"]
-          },
-          "legend": { "title": "DOE WQI Class", "orient": "bottom-right" }
-        },
-        "tooltip": [
-          { "field": "name",      "title": "River"     },
-          { "field": "state",     "title": "State"     },
-          { "field": "wqi_class", "title": "WQI Class" }
-        ]
+        "x":    { "field": "gdp",        "type": "quantitative", "scale": { "type": "log" } },
+        "y":    { "field": "mismanaged", "type": "quantitative" },
+        "text": { "value": "Malaysia" }
       }
     }
   ]
