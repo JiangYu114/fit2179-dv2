@@ -1,54 +1,90 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Bubble chart of top 15 ocean plastic polluters. Bubble size = total emissions (kt/yr). Source: Jambeck et al. 2015; Meijer et al. 2021, via Our World in Data.",
+  "description": "Global plastic production 1950–2022 with key event annotations. Source: PlasticsEurope, Our World in Data.",
   "width": "container",
   "height": 240,
   "data": {
     "values": [
-      { "country": "Philippines",  "emissions": 356.4, "region": "Southeast Asia" },
-      { "country": "India",        "emissions": 126.5, "region": "South Asia"     },
-      { "country": "Malaysia",     "emissions":  73.9, "region": "Southeast Asia" },
-      { "country": "China",        "emissions":  70.3, "region": "East Asia"      },
-      { "country": "Indonesia",    "emissions":  56.4, "region": "Southeast Asia" },
-      { "country": "Myanmar",      "emissions":  40.0, "region": "Southeast Asia" },
-      { "country": "Vietnam",      "emissions":  28.2, "region": "Southeast Asia" },
-      { "country": "Bangladesh",   "emissions":  24.6, "region": "South Asia"     },
-      { "country": "Thailand",     "emissions":  18.5, "region": "Southeast Asia" },
-      { "country": "Sri Lanka",    "emissions":  14.9, "region": "South Asia"     },
-      { "country": "Nigeria",      "emissions":  12.0, "region": "Africa"         },
-      { "country": "Cambodia",     "emissions":  10.2, "region": "Southeast Asia" },
-      { "country": "Pakistan",     "emissions":   8.7, "region": "South Asia"     },
-      { "country": "Brazil",       "emissions":   8.4, "region": "Americas"       },
-      { "country": "Tanzania",     "emissions":   7.4, "region": "Africa"         }
+      { "year": 1950, "prod": 2  },
+      { "year": 1955, "prod": 3  },
+      { "year": 1960, "prod": 8  },
+      { "year": 1965, "prod": 15 },
+      { "year": 1970, "prod": 26 },
+      { "year": 1975, "prod": 40 },
+      { "year": 1980, "prod": 46 },
+      { "year": 1985, "prod": 60 },
+      { "year": 1990, "prod": 99 },
+      { "year": 1995, "prod": 130},
+      { "year": 2000, "prod": 204},
+      { "year": 2005, "prod": 234},
+      { "year": 2009, "prod": 250},
+      { "year": 2010, "prod": 270},
+      { "year": 2015, "prod": 322},
+      { "year": 2019, "prod": 368},
+      { "year": 2022, "prod": 400}
     ]
   },
-  "mark": { "type": "circle", "opacity": 0.85 },
-  "encoding": {
-    "x": {
-      "field": "country",
-      "type": "nominal",
-      "sort": { "field": "emissions", "order": "descending" },
-      "axis": { "labelAngle": -40, "title": null }
-    },
-    "size": {
-      "field": "emissions",
-      "type": "quantitative",
-      "scale": { "range": [40, 3500] },
-      "legend": { "title": "kt / yr" }
-    },
-    "color": {
-      "condition": {
-        "test": "datum.country === 'Malaysia'",
-        "value": "#ff6b5b"
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "line": { "color": "#00bcd4", "strokeWidth": 2 },
+        "color": {
+          "expr": "{ gradient: 'linear', x1: 0, y1: 0, x2: 0, y2: 1, stops: [{offset:0, color:'rgba(0,188,212,0.25)'},{offset:1, color:'rgba(0,188,212,0.02)'}]}"
+        }
       },
-      "field": "region",
-      "type": "nominal",
-      "scale": { "range": ["#00bcd4", "#4caf7d", "#ffb347", "#7c83a3"] }
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": { "format": "d", "title": null, "grid": false }
+        },
+        "y": {
+          "field": "prod",
+          "type": "quantitative",
+          "axis": { "title": "Million tonnes" }
+        }
+      }
     },
-    "tooltip": [
-      { "field": "country",   "title": "Country"             },
-      { "field": "emissions", "title": "Ocean plastic (kt/yr)", "format": ".1f" },
-      { "field": "region",    "title": "Region"              }
-    ]
-  }
+    {
+      "data": {
+        "values": [
+          { "year": 1965, "prod": 15,  "label": "Single-use plastics introduced" },
+          { "year": 2015, "prod": 322, "label": "Paris Agreement" }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#1a3a5c",
+        "strokeDash": [4, 3],
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "quantitative" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "year": 1965, "prod": 15,  "label": "Single-use\nplastics born" },
+          { "year": 2015, "prod": 322, "label": "Paris Agreement" }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": -10,
+        "dx": 5,
+        "fontSize": 9,
+        "align": "left",
+        "color": "#3a6688",
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "quantitative" },
+        "y": { "field": "prod", "type": "quantitative" },
+        "text": { "field": "label" }
+      }
+    }
+  ]
 }
